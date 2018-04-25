@@ -1,30 +1,55 @@
 package com.info.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.info.dao.UserDAO;
+import com.info.dao.impl.UserDAOImpl;
+import com.info.entity.UserDO;
 
 public class LoginController extends HttpServlet {
 
-    private static final long serialVersionUID = -2774545038842957201L;
+	private static final long serialVersionUID = -2774545038842957201L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 
-        String userName = request.getParameter("username");
-        String password = request.getParameter("password");
+		String userName = request.getParameter("username");
+		String password = request.getParameter("password");
 
-        if ("admin".equals(userName) && "123456".equals(password)) {
-            request.getRequestDispatcher("/show.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        }
-    }
+		if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
+			response.getWriter().write("请输入账号密码");
+			return;
+		}
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
-        doGet(request, response);
-    }
+		UserDAO userDAO = new UserDAOImpl();
+
+		UserDO userDO = new UserDO();
+		userDO.setUserName(userName);
+		userDO.setUserPasswd(password);
+		userDO.setStatus(1);
+		List<UserDO> userDOs = userDAO.queryUserDOs(userDO);
+
+		if (userDOs.isEmpty() || userDOs.size() > 1) {
+			response.getWriter().write("账号密码错误");
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", userDOs.get(0));
+			response.getWriter().write("success");
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
 }

@@ -4,64 +4,74 @@ import java.util.Date;
 
 public class CategoryDO {
 
-    private Long    categoryId;
+	private Long categoryId;
 
-    private String  categoryName;
+	private Long userId;
 
-    private String  categoryDesc;
+	private String categoryName;
 
-    private Date    gmtCreate;
+	private String categoryDesc;
 
-    private Date    gmtModify;
+	private Date gmtCreate;
 
-    private Integer status;
+	private Date gmtModify;
 
-    public Integer getStatus() {
-        return status;
-    }
+	private Integer status;
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getCategoryName() {
-        return categoryName;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+	public Long getCategoryId() {
+		return categoryId;
+	}
 
-    public String getCategoryDesc() {
-        return categoryDesc;
-    }
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
 
-    public void setCategoryDesc(String categoryDesc) {
-        this.categoryDesc = categoryDesc;
-    }
+	public String getCategoryName() {
+		return categoryName;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public String getCategoryDesc() {
+		return categoryDesc;
+	}
 
-    public Date getGmtModify() {
-        return gmtModify;
-    }
+	public void setCategoryDesc(String categoryDesc) {
+		this.categoryDesc = categoryDesc;
+	}
 
-    public void setGmtModify(Date gmtModify) {
-        this.gmtModify = gmtModify;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModify() {
+		return gmtModify;
+	}
+
+	public void setGmtModify(Date gmtModify) {
+		this.gmtModify = gmtModify;
+	}
 
 }

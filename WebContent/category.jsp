@@ -46,7 +46,11 @@
 </head>
 <body>
 	<center>
-		<h2>类别管理</h2>
+		<h2>
+			类别管理 &nbsp;&nbsp;&nbsp;
+			<button onclick="toAdd()">新增</button>
+			<button onclick="back()">返回</button>
+		</h2>
 
 		<table class=table4_1>
 			<tr>
@@ -55,7 +59,8 @@
 				<th width="20%">类别描述</th>
 				<th width="20%">操作</th>
 			</tr>
-			<c:forEach var="categoryDO" items="${categoryDOs }" varStatus="status">
+			<c:forEach var="categoryDO" items="${categoryDOs }"
+				varStatus="status">
 				<tr>
 					<td width="20%">${status.index + 1}</td>
 					<td width="20%">${categoryDO.categoryName}</td>
@@ -71,6 +76,10 @@
 	<script type="text/javascript">
 		function edit(categoryId) {
 			window.location.href="category?operate=toEdit&categoryId="+categoryId
+		}
+		
+		function back() {
+			window.location.href = "${ctx}/show.jsp";
 		}
 
 		function del(categoryId) {
@@ -96,6 +105,10 @@
 				});
 			}
 
+		}
+		
+		function toAdd(){
+			window.location.href = "${ctx}/category?operate=toAdd";
 		}
 	</script>
 </body>

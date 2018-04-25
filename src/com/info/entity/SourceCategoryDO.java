@@ -4,64 +4,74 @@ import java.util.Date;
 
 public class SourceCategoryDO {
 
-    private Long sourceCategoryId;
+	private Long sourceCategoryId;
 
-    private Long sourceId;
+	private Long userId;
 
-    private Long categoryId;
+	private Long sourceId;
 
-    private Date gmtCreate;
+	private Long categoryId;
 
-    private Date gmtModify;
-    
-    private Integer status;
+	private Date gmtCreate;
 
-    public Integer getStatus() {
-        return status;
-    }
+	private Date gmtModify;
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	private Integer status;
 
-    public Long getSourceCategoryId() {
-        return sourceCategoryId;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public void setSourceCategoryId(Long sourceCategoryId) {
-        this.sourceCategoryId = sourceCategoryId;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public Long getSourceId() {
-        return sourceId;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public void setSourceId(Long sourceId) {
-        this.sourceId = sourceId;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
+	public Long getSourceCategoryId() {
+		return sourceCategoryId;
+	}
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
+	public void setSourceCategoryId(Long sourceCategoryId) {
+		this.sourceCategoryId = sourceCategoryId;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public Long getSourceId() {
+		return sourceId;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public void setSourceId(Long sourceId) {
+		this.sourceId = sourceId;
+	}
 
-    public Date getGmtModify() {
-        return gmtModify;
-    }
+	public Long getCategoryId() {
+		return categoryId;
+	}
 
-    public void setGmtModify(Date gmtModify) {
-        this.gmtModify = gmtModify;
-    }
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModify() {
+		return gmtModify;
+	}
+
+	public void setGmtModify(Date gmtModify) {
+		this.gmtModify = gmtModify;
+	}
 
 }

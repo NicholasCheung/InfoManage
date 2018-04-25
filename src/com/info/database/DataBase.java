@@ -20,7 +20,7 @@ public class DataBase {
     private String              user = "root";
 
     // 用户密码
-    private String              pwd  = "";
+    private String              pwd  = "123456";
 
     // 数据库链接对象
     private java.sql.Connection conn;

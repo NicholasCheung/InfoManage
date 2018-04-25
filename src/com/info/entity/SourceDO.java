@@ -4,84 +4,94 @@ import java.util.Date;
 
 public class SourceDO {
 
-    private Long    sourceId;
+	private Long sourceId;
 
-    private String  sourceName;
+	private Long userId;
 
-    private String  sourceDesc;
+	private String sourceName;
 
-    private String  sourceUrl;
+	private String sourceDesc;
 
-    private Integer sourceType;
+	private String sourceUrl;
 
-    private Date    gmtCreate;
+	private Integer sourceType;
 
-    private Date    gmtModify;
+	private Date gmtCreate;
 
-    private Integer status;
+	private Date gmtModify;
 
-    public Integer getStatus() {
-        return status;
-    }
+	private Integer status;
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public Long getSourceId() {
-        return sourceId;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setSourceId(Long sourceId) {
-        this.sourceId = sourceId;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getSourceName() {
-        return sourceName;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setSourceName(String sourceName) {
-        this.sourceName = sourceName;
-    }
+	public Long getSourceId() {
+		return sourceId;
+	}
 
-    public String getSourceDesc() {
-        return sourceDesc;
-    }
+	public void setSourceId(Long sourceId) {
+		this.sourceId = sourceId;
+	}
 
-    public void setSourceDesc(String sourceDesc) {
-        this.sourceDesc = sourceDesc;
-    }
+	public String getSourceName() {
+		return sourceName;
+	}
 
-    public String getSourceUrl() {
-        return sourceUrl;
-    }
+	public void setSourceName(String sourceName) {
+		this.sourceName = sourceName;
+	}
 
-    public void setSourceUrl(String sourceUrl) {
-        this.sourceUrl = sourceUrl;
-    }
+	public String getSourceDesc() {
+		return sourceDesc;
+	}
 
-    public Integer getSourceType() {
-        return sourceType;
-    }
+	public void setSourceDesc(String sourceDesc) {
+		this.sourceDesc = sourceDesc;
+	}
 
-    public void setSourceType(Integer sourceType) {
-        this.sourceType = sourceType;
-    }
+	public String getSourceUrl() {
+		return sourceUrl;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public Integer getSourceType() {
+		return sourceType;
+	}
 
-    public Date getGmtModify() {
-        return gmtModify;
-    }
+	public void setSourceType(Integer sourceType) {
+		this.sourceType = sourceType;
+	}
 
-    public void setGmtModify(Date gmtModify) {
-        this.gmtModify = gmtModify;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModify() {
+		return gmtModify;
+	}
+
+	public void setGmtModify(Date gmtModify) {
+		this.gmtModify = gmtModify;
+	}
 
 }

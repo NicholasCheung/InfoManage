@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员登录</title>
+<title>功能操作</title>
 
 <style>
 .table4_1 table {
@@ -45,7 +45,7 @@
 </head>
 <body>
 	<center>
-		<h2>管理员功能操作</h2>
+		<h2>功能操作</h2>
 
 		<table class=table4_1>
 			<tr>

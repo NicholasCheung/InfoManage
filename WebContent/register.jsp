@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>登录</title>
+<title>注册</title>
 
 </head>
 <body>
 	<fieldset>
-		<form method="POST" action="login" id="frmLogin">
+		<form id="registerForm">
 			<table background="images\bg_img1.jpg" height="412" width="100%">
 				<tr height="170">
 					<td width="41%"></td>
-					<td><h2>用户登录</h2></td>
+					<td><h2>用户注册</h2></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -34,32 +34,36 @@
 								<td></td>
 								<td></td>
 							</tr>
+							<tr>
+								<td>确 认 密 码：</td>
+								<td><input type="password" name="rePassword"
+									id="rePassword" placeholder="请输入确认密码" size="20" maxlength="20" /></td>
+								<td></td>
+								<td></td>
+							</tr>
 						</table></td>
 				<tr>
 					<td></td>
 					<td><table>
 							<tr>
-								<td><input type="button" name="login" value="登录"
-									onClick="validateLogin()" /></td>
-								<td><input type="reset" name="rs" value="重置"></td>
-								<td><a href="${ctx }/register?operate=to">注册</a></td>
+								<td><input type="button" value="注册"
+									onClick="registerUser()" /></td>
+								<td><input type="button" value="登录" onClick="toLogin()" /></td>
 							</tr>
 						</table></td>
 			</table>
+			<input type="hidden" value="add" name="operate" />
 		</form>
 	</fieldset>
 	<script language="javascript">
-		if ("${msg}" != "") {
-			alert("${msg}")
-		}
-		
-		if("${user.userId}" != ""){
-			window.location.href = "${ctx}/show.jsp"
+		function toLogin() {
+			window.location.href = "${ctx}"
 		}
 
-		function validateLogin() {
+		function registerUser() {
 			var sUserName = $("#username").val();
 			var sPassword = $("#password").val();
+			var rePassword = $("#rePassword").val();
 			if ((sUserName == "") || (sUserName == null)) {
 				alert("请输入用户名!");
 				return false;
@@ -70,13 +74,26 @@
 				return false;
 			}
 
+			if ((rePassword == "") || (rePassword == null)) {
+				alert("请输入确认密码!");
+				return false;
+			}
+
+			if (rePassword != sPassword) {
+				alert("两次密码输入不一致");
+				return false;
+			}
+
 			$.ajax({
-				url : "${ctx}/login",
+				url : "${ctx}/register",
 				type : "post",
-				data : $("#frmLogin").serialize(),
+				data : $("#registerForm").serialize(),
 				success : function(data) {
 					if (data == "success") {
-						window.location.href = "${ctx}/show.jsp";
+						alert("注册成功")
+						window.location.href = "${ctx}";
+					} else if (data == null || data == "fail") {
+						alert("注册失败")
 					} else {
 						alert(data)
 					}
