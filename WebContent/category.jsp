@@ -45,6 +45,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<center>
 		<h2>
 			类别管理 &nbsp;&nbsp;&nbsp;

@@ -11,7 +11,8 @@
 <body>
 	<fieldset>
 		<form method="POST" action="login" id="frmLogin">
-			<table background="images\bg_img1.jpg" height="412" width="100%">
+			<table background="images\bg_img1.jpg" height="412" width="100%"
+				style="background-repeat: no-repeat; background-size: 100%;">
 				<tr height="170">
 					<td width="41%"></td>
 					<td><h2>用户登录</h2></td>
@@ -41,8 +42,8 @@
 							<tr>
 								<td><input type="button" name="login" value="登录"
 									onClick="validateLogin()" /></td>
-								<td><input type="reset" name="rs" value="重置"></td>
-								<td><a href="${ctx }/register?operate=to">注册</a></td>
+								<td><a href="${ctx }/register?operate=to"><input
+										type="button" value="注册"></a></td>
 							</tr>
 						</table></td>
 			</table>
@@ -52,8 +53,8 @@
 		if ("${msg}" != "") {
 			alert("${msg}")
 		}
-		
-		if("${user.userId}" != ""){
+
+		if ("${user.userId}" != "") {
 			window.location.href = "${ctx}/show.jsp"
 		}
 

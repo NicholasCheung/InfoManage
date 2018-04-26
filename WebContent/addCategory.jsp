@@ -9,6 +9,7 @@
 
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<fieldset>
 		<form method="POST" action="login" id="addCategoryForm">
 			<table height="412" width="100%">
@@ -42,12 +43,10 @@
 								<td><input type="button" value="提交" onClick="add()" /></td>
 								<td><input type="button" value="返回" onClick="back()" /></td>
 							</tr>
-							</tr>
 						</table></td>
 			</table>
 		</form>
 	</fieldset>
-	</form>
 	<script language="javascript">
 		function back() {
 			window.location.href = "${ctx}/category?operate=show";

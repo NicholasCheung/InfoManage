@@ -9,6 +9,7 @@
 
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<fieldset>
 		<form method="POST" action="login" id="editCategoryForm">
 			<table height="412" width="100%">
@@ -40,14 +41,16 @@
 					<td><table>
 							<tr>
 								<td><input type="button" value="提交" onClick="edit()" /></td>
-							</tr>
+								<td><input type="button" value="返回" onClick="back()" /></td>
 							</tr>
 						</table></td>
 			</table>
 		</form>
 	</fieldset>
-	</form>
 	<script language="javascript">
+		function back() {
+			window.location.href = "${ctx}/category?operate=show";
+		}
 		function edit() {
 			var categoryName = $("#categoryName").val();
 			var categoryDesc = $("#categoryDesc").val();

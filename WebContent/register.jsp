@@ -11,7 +11,8 @@
 <body>
 	<fieldset>
 		<form id="registerForm">
-			<table background="images\bg_img1.jpg" height="412" width="100%">
+			<table background="images\bg_img1.jpg" height="412" width="100%"
+				style="background-repeat: no-repeat; background-size: 100%;">
 				<tr height="170">
 					<td width="41%"></td>
 					<td><h2>用户注册</h2></td>

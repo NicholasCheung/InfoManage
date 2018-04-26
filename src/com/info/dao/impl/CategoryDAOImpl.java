@@ -2,6 +2,7 @@ package com.info.dao.impl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -130,7 +131,7 @@ public class CategoryDAOImpl extends DataBase implements CategoryDAO {
 		}
 
 		update = update.concat("gmt_modify = ?  where category_id = ? ");
-		params.add(categoryDO.getGmtModify());
+		params.add(new Date());
 		params.add(categoryDO.getCategoryId());
 
 		return this.executeUpdate(update, params);

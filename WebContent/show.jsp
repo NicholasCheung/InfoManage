@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ include file="head_top.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,6 +45,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<center>
 		<h2>功能操作</h2>
 
@@ -52,7 +54,7 @@
 				<td width="20%"><a href="category?operate=show">类别管理</a></td>
 			</tr>
 			<tr>
-				<td><a href="">资源管理</a></td>
+				<td><a href="source?operate=show">资源管理</a></td>
 			</tr>
 		</table>
 

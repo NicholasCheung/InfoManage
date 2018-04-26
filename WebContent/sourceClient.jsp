@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>资源管理</title>
+<title>资源搜搜</title>
 
 <style>
 .table4_1 table {
@@ -45,21 +45,20 @@
 </style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
 	<center>
-		<h2>
-			资源管理 &nbsp;&nbsp;&nbsp;
-			<button onclick="toAdd()">新增</button>
-			<button onclick="back()">返回</button>
-		</h2>
-
+		<h2>资源搜搜</h2>
+		<h3>
+			<input type="button" value="登录" onclick="toLogin()" /> <input
+				type="button" value="注册" onclick="toRegister()" />
+		</h3>
 		<table class=table4_1>
 			<tr>
 				<th width="10%">序号</th>
 				<th width="20%">资源名称</th>
 				<th width="20%">资源描述</th>
-				<th width="20%">资源类别</th>
+				<th width="10%">资源类别</th>
 				<th width="10%">资源类型</th>
+				<th width="10%">上传者</th>
 				<th width="10%">上传时间</th>
 				<th width="10%">操作</th>
 			</tr>
@@ -68,19 +67,18 @@
 					<td width="10%">${status.index + 1}</td>
 					<td width="20%">${sourceDTO.sourceDO.sourceName}</td>
 					<td width="20%">${sourceDTO.sourceDO.sourceDesc}</td>
-					<td width="20%">${sourceDTO.categoryDO.categoryName}</td>
+					<td width="10%">${sourceDTO.categoryDO.categoryName}</td>
 					<td width="10%"><c:if
 							test="${sourceDTO.sourceDO.sourceType == 1}">图片</c:if> <c:if
 							test="${sourceDTO.sourceDO.sourceType == 2}">音频</c:if> <c:if
 							test="${sourceDTO.sourceDO.sourceType == 3}">视频</c:if> <c:if
 							test="${sourceDTO.sourceDO.sourceType == 4}">文件</c:if> <c:if
 							test="${sourceDTO.sourceDO.sourceType == 5}">其他</c:if></td>
+					<td width="10%">${sourceDTO.userDO.userName}</td>
 					<td width="10%"><fmt:formatDate
 							value="${sourceDTO.sourceDO.gmtCreate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td width="10%"><a
-						href="${ctx }/download?filename=${sourceDTO.sourceDO.sourceUrl}">下载</a>
-						| <a onclick="del(${sourceDTO.sourceDO.sourceId})">删除</a></td>
+					<td width="10%"><a href="${ctx }/download?filename=${sourceDTO.sourceDO.sourceUrl}">下载</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -88,70 +86,12 @@
 	</center>
 
 	<script type="text/javascript">
-		function edit(sourceId) {
-			window.location.href="${ctx}/source?operate=toEdit&sourceId="+sourceId
+		function toLogin(){
+			window.location.href = "${ctx}"
 		}
 		
-		function back() {
-			window.location.href = "${ctx}/show.jsp";
-		}
-
-		function del(sourceId) {
-			if(confirm("确定删除该类别吗？")){
-				$.ajax({
-					url : "${ctx}/source",
-					type : "post",
-					data : {
-						"operate" : "del",
-						"sourceId" : sourceId
-					},
-					success : function(data) {
-						if (data != null) {
-							alert("删除成功")
-							window.location.href = "${ctx}/source?operate=show";
-						} else {
-							alert("删除失败")
-						}
-					},
-					error : function() {
-						alert("服务器当当了...")
-					}
-				});
-			}
-
-		}
-		
-		function toAdd(){
-			window.location.href = "${ctx}/source?operate=toAdd";
-		}
-		
-		function del(sourceId) {
-			if(confirm("确定删除该资源吗？")){
-				$.ajax({
-					url : "${ctx}/source",
-					type : "post",
-					data : {
-						"operate" : "del",
-						"sourceId" : sourceId
-					},
-					success : function(data) {
-						if (data != null) {
-							alert("删除成功")
-							window.location.href = "${ctx}/source?operate=show";
-						} else {
-							alert("删除失败")
-						}
-					},
-					error : function() {
-						alert("服务器当当了...")
-					}
-				});
-			}
-
-		}
-		
-		function edit(sourceId) {
-			window.location.href="source?operate=toEdit&categoryId="+sourceId
+		function toRegister(){
+			window.location.href = "${ctx}/register"
 		}
 	</script>
 </body>
