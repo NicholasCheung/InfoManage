@@ -6,7 +6,7 @@ import com.info.entity.CategoryDO;
 
 public interface CategoryDAO {
 
-    List<CategoryDO> queryCategorys(CategoryDO categoryDO);
+    List<CategoryDO> queryCategorys(CategoryDO categoryDO, Boolean isLike);
 
     CategoryDO queryCategoryById(Long categoryId);
 

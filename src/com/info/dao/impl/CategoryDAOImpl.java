@@ -14,7 +14,7 @@ import com.info.entity.CategoryDO;
 public class CategoryDAOImpl extends DataBase implements CategoryDAO {
 
 	@Override
-	public List<CategoryDO> queryCategorys(CategoryDO categoryDO) {
+	public List<CategoryDO> queryCategorys(CategoryDO categoryDO, Boolean isLike) {
 		List<CategoryDO> result = new ArrayList<CategoryDO>();
 		List<Object> params = new ArrayList<Object>();
 
@@ -23,8 +23,13 @@ public class CategoryDAOImpl extends DataBase implements CategoryDAO {
 			query = query.concat("where ");
 			boolean bool = false;
 			if (StringUtils.isNotBlank(categoryDO.getCategoryName())) {
-				query = query.concat("category_name like ?");
-				params.add("%" + categoryDO.getCategoryName() + "%");
+				if (isLike) {
+					query = query.concat("category_name like ?");
+					params.add("%" + categoryDO.getCategoryName() + "%");
+				} else {
+					query = query.concat("category_name = ?");
+					params.add(categoryDO.getCategoryName());
+				}
 				bool = true;
 			}
 

@@ -69,7 +69,7 @@ public class SourceDAOImpl extends DataBase implements SourceDAO {
 				params.add(userDO.getUserId());
 			}
 		}
-
+		query = query + " order by ts.gmt_create desc";
 		try {
 			ResultSet rs = this.executeQuery(query, params);
 			while (rs.next()) {

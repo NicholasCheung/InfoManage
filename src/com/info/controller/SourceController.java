@@ -285,7 +285,7 @@ public class SourceController extends HttpServlet {
 			CategoryDO categoryDO = new CategoryDO();
 			categoryDO.setUserId(userId);
 			categoryDO.setStatus(1);
-			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDO);
+			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDO, true);
 			request.setAttribute("categoryDOs", categoryDOs);
 			request.getRequestDispatcher("/addSource.jsp").forward(request, response);
 		} catch (Exception e) {

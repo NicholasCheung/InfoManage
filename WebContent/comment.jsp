@@ -10,7 +10,7 @@
 <style>
 .table4_1 table {
 	width: 100%;
-	margin: 15px 0;
+	margin: 25px 0;
 	border: 0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .table4_1, .table4_1 th, .table4_1 td {
-	font-size: 0.95em;
+	font-size: 1.2em;
 	text-align: center;
 	padding: 4px;
 	border-collapse: collapse;
@@ -48,7 +48,8 @@
 	<%@ include file="header.jsp"%>
 	<center>
 		<h2>资源评论</h2>
-		<input type="button" style="margin-bottom: 10px; height:30px;"  value="返回" onclick="back()" />
+		<input type="button" style="margin-bottom: 10px; height: 30px;"
+			value="返回" onclick="history.back(-1)" />
 
 		<table class=table4_1>
 			<tr>
@@ -78,7 +79,7 @@
 			</tr>
 		</table>
 		<c:if test="${user.userId != 0}">
-			<table class='table4_1' style="width: 65%; margin-top: 30px;">
+			<table class='table4_1' style="width: 65%; margin-top: 60px;">
 				<tr>
 					<td width="20%">您的评论：</td>
 					<td><textarea id=content style="width: 100%;" rows="5"></textarea></td>
@@ -86,13 +87,15 @@
 				</tr>
 			</table>
 		</c:if>
-		<table class='table4_1' style="width: 65%; margin-top: 30px;">
+		<table class='table4_1' style="width: 65%; margin-top: 60px;">
 			<c:forEach var="commentDTO" items="${commentDTOs }"
 				varStatus="status">
 				<tr>
 					<td width="10%">序号：${status.index + 1}</td>
 					<td width="20%">评论者：${commentDTO.userDO.userName }</td>
-					<td width="15%">评论时间：${commentDTO.commentDO.gmtCreate }</td>
+					<td width="15%">评论时间：<fmt:formatDate
+							value="${commentDTO.commentDO.gmtCreate }"
+							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td width="10%">内容：</td>
 					<td width="35%">${commentDTO.commentDO.content }</td>
 					<td width="10%"><c:if
@@ -111,9 +114,6 @@
 
 	<script type="text/javascript">
 	
-		function back() {
-			window.location.href = "${ctx}/source";
-		}
 
 		function comment(sourceId){
 			if("${user.userId}" == ""){

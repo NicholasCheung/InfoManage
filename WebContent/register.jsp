@@ -15,30 +15,33 @@
 				style="background-repeat: no-repeat; background-size: 100%;">
 				<tr height="170">
 					<td width="41%"></td>
-					<td><h2>用户注册</h2></td>
+					<td style="font-size: 40px">用户注册</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><table>
 
 							<tr>
-								<td>用户名：</td>
+								<td style="font-size: 30px">用户名：</td>
 								<td><input type="text" name="username" id="username"
-									placeholder="请输入用户名" size="20" maxlength="20" /></td>
+									style="height: 30px" placeholder="请输入用户名" size="20"
+									maxlength="20" /></td>
 								<td></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>密 码：</td>
+								<td style="font-size: 30px">密 码：</td>
 								<td><input type="password" name="password" id="password"
-									placeholder="请输入密码" size="20" maxlength="20" /></td>
+									style="height: 30px" placeholder="请输入密码" size="20"
+									maxlength="20" /></td>
 								<td></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>确 认 密 码：</td>
+								<td style="font-size: 30px">确 认 密 码：</td>
 								<td><input type="password" name="rePassword"
-									id="rePassword" placeholder="请输入确认密码" size="20" maxlength="20" /></td>
+									style="height: 30px" id="rePassword" placeholder="请输入确认密码"
+									size="20" maxlength="20" /></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -47,9 +50,10 @@
 					<td></td>
 					<td><table>
 							<tr>
-								<td><input type="button" value="注册"
-									onClick="registerUser()" /></td>
-								<td><input type="button" value="登录" onClick="toLogin()" /></td>
+								<td style="font-size: 30px"><input type="button" value="注册"
+									style="height: 30px" onClick="registerUser()" /></td>
+								<td style="font-size: 30px"><input type="button" value="登录"
+									onClick="toLogin()" style="height: 30px" /></td>
 							</tr>
 						</table></td>
 			</table>

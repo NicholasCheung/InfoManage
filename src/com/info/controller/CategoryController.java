@@ -88,7 +88,7 @@ public class CategoryController extends HttpServlet {
 			categoryDO.setStatus(1);
 
 			int result = 0;
-			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDO);
+			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDO, false);
 			if (null == categoryDOs || categoryDOs.isEmpty()) {
 				categoryDO.setUserId(userId);
 				categoryDO.setCategoryDesc(categoryDesc);
@@ -131,7 +131,7 @@ public class CategoryController extends HttpServlet {
 			CategoryDO categoryDOQuery = new CategoryDO();
 			categoryDOQuery.setStatus(1);
 			categoryDOQuery.setUserId(userId);
-			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDOQuery);
+			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDOQuery, true);
 			request.setAttribute("categoryDOs", categoryDOs);
 			request.getRequestDispatcher("/category.jsp").forward(request, response);
 		} catch (Exception e) {

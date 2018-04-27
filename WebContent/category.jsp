@@ -10,7 +10,7 @@
 <style>
 .table4_1 table {
 	width: 100%;
-	margin: 15px 0;
+	margin: 25px 0;
 	border: 0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .table4_1, .table4_1 th, .table4_1 td {
-	font-size: 0.95em;
+	font-size: 1.2em;
 	text-align: center;
 	padding: 4px;
 	border-collapse: collapse;

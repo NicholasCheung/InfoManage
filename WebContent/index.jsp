@@ -15,30 +15,32 @@
 				style="background-repeat: no-repeat; background-size: 100%;">
 				<tr height="170">
 					<td width="41%"></td>
-					<td><h2>用户登录</h2></td>
+					<td style="font-size: 40px">用户登录</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><table>
 
 							<tr>
-								<td>用户名：</td>
+								<td style="font-size: 30px">用户名：</td>
 								<td><input type="text" name="username" id="username"
-									placeholder="请输入用户名" size="20" maxlength="20" /></td>
+									style="height: 30px" placeholder="请输入用户名" size="20"
+									maxlength="20" /></td>
 								<td></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>密 码：</td>
+								<td style="font-size: 30px">密 码：</td>
 								<td><input type="password" name="password" id="password"
-									placeholder="请输入密码" size="20" maxlength="20" /></td>
+									style="height: 30px" placeholder="请输入密码" size="20"
+									maxlength="20" /></td>
 								<td></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>权 限：</td>
+								<td style="font-size: 30px">权 限：</td>
 								<td><select name="userType" id="userType"
-									style="width: 170px">
+									style="height: 30px" style="width: 170px">
 										<option value="1">普通用户</option>
 										<option value="2">管理员</option>
 								</select></td>
@@ -51,11 +53,11 @@
 					<td><table>
 							<tr>
 								<td><input type="button" name="login" value="登录"
-									onClick="validateLogin()" /></td>
+									style="font-size: 20px" onClick="validateLogin()" /></td>
 								<td><a href="${ctx }/register?operate=to"><input
-										type="button" value="注册"></a></td>
+										style="font-size: 20px" type="button" value="注册"></a></td>
 								<td><a href="${ctx }/source"><input type="button"
-										value="去搜搜"></a></td>
+										style="font-size: 20px" value="去搜搜"></a></td>
 							</tr>
 						</table></td>
 			</table>

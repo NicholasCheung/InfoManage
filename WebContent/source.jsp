@@ -10,7 +10,7 @@
 <style>
 .table4_1 table {
 	width: 100%;
-	margin: 15px 0;
+	margin: 25px 0;
 	border: 0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .table4_1, .table4_1 th, .table4_1 td {
-	font-size: 0.95em;
+	font-size: 1.2em;
 	text-align: center;
 	padding: 4px;
 	border-collapse: collapse;
@@ -49,7 +49,7 @@
 	<center>
 		<h2>资源管理 &nbsp;&nbsp;&nbsp;</h2>
 		<form action="${ctx }/source" method="post">
-			<table style="margin-bottom: 20px;">
+			<table class=table4_1 style="margin-bottom: 20px;">
 				<tr>
 					<td style="padding-left: 20px;">资源名称：<input name="sourceName"
 						value="${sourceName }" id="sourceName" /></td>
@@ -68,7 +68,6 @@
 							<option value="5">其他</option></select></td>
 					<td style="padding-left: 20px;"><input type="submit"
 						value="搜搜" /></td>
-					<td style="padding-left: 20px;"><input type="reset" value="重置" /></td>
 					<c:if test="${user.userId  != 0}">
 						<td style="padding-left: 20px;"><input type="button"
 							value="新增" onclick="toAdd()" /></td>
@@ -77,6 +76,7 @@
 						value="返回" onclick="back()" /></td>
 				</tr>
 			</table>
+			<input type="hidden" value="show" name="operate">
 		</form>
 		<table class=table4_1>
 			<tr>
