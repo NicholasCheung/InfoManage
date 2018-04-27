@@ -68,7 +68,6 @@ public class RegisterController extends HttpServlet {
 
 		UserDO userDO = new UserDO();
 		userDO.setUserName(userName);
-		userDO.setStatus(1);
 		List<UserDO> userDOs = userDAO.queryUserDOs(userDO);
 
 		if (!userDOs.isEmpty()) {

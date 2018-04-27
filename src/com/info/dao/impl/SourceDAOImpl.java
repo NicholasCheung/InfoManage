@@ -32,9 +32,19 @@ public class SourceDAOImpl extends DataBase implements SourceDAO {
 		query = query.concat("where ts.status = 1");
 		if (null != sourceDO) {
 
+			if (null != sourceDO.getSourceId()) {
+				query = query.concat(" and ts.source_id = ? ");
+				params.add(sourceDO.getSourceId());
+			}
+
 			if (StringUtils.isNotBlank(sourceDO.getSourceName())) {
 				query = query.concat(" and source_name like ? ");
 				params.add("%" + sourceDO.getSourceName() + "%");
+			}
+
+			if (null != sourceDO.getSourceType()) {
+				query = query.concat(" and source_type = ? ");
+				params.add(sourceDO.getSourceType());
 			}
 
 		}
@@ -54,7 +64,7 @@ public class SourceDAOImpl extends DataBase implements SourceDAO {
 				query = query.concat(" and tu.user_name like ? ");
 				params.add("%" + userDO.getUserName() + "%");
 			}
-			if (null != userDO.getUserId()) {
+			if (null != userDO.getUserId() && !userDO.getUserId().equals(0L)) {
 				query = query.concat(" and tu.user_id = ? ");
 				params.add(userDO.getUserId());
 			}

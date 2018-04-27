@@ -51,11 +51,16 @@
 
 		<table class=table4_1>
 			<tr>
-				<td width="20%"><a href="category?operate=show">类别管理</a></td>
+				<td width="20%"><a href="${ctx }/category?operate=show">类别管理</a></td>
 			</tr>
 			<tr>
-				<td><a href="source?operate=show">资源管理</a></td>
+				<td><a href="${ctx }/source?operate=show">资源管理</a></td>
 			</tr>
+			<c:if test="${user.userId  == 0}">
+				<tr>
+					<td><a href="${ctx }/user">用户管理</a></td>
+				</tr>
+			</c:if>
 		</table>
 
 	</center>

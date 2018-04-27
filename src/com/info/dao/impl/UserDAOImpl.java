@@ -2,6 +2,7 @@ package com.info.dao.impl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -101,6 +102,23 @@ public class UserDAOImpl extends DataBase implements UserDAO {
 		params.add(userDO.getUserPasswd());
 		params.add(userDO.getGmtCreate());
 		params.add(userDO.getStatus());
+		return this.executeUpdate(update, params);
+	}
+
+	@Override
+	public int updateUserDO(UserDO userDO) {
+		String update = "update t_user set ";
+		List<Object> params = new ArrayList<Object>();
+
+		if (null != userDO.getStatus()) {
+			update = update.concat("status = ?, ");
+			params.add(userDO.getStatus());
+		}
+
+		update = update.concat("gmt_modify = ?  where user_id = ? ");
+		params.add(new Date());
+		params.add(userDO.getUserId());
+
 		return this.executeUpdate(update, params);
 	}
 }

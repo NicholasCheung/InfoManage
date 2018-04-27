@@ -19,14 +19,13 @@ public class DownloadController extends HttpServlet {
 		resp.setHeader("content-type", "text/html;charset=UTF-8");
 		String path = getServletContext().getRealPath("/");
 		String fileName = req.getParameter("filename");
-		String filename = null;
-		filename = new String(fileName.getBytes("8859_1"), "utf-8");
-		// filename = new String(filename.getBytes("8859_1"),"uft-8");
-		System.out.println("路径：" + path + "文件名：" + filename);
-		File file = new File(path + filename);
+//		filename = new String(fileName.getBytes("8859_1"), "utf-8");
+		String pathFile = "upload/";
+		System.out.println("路径：" + path + "文件名：" + fileName);
+		File file = new File(path +pathFile+ fileName);
 		if (file.exists()) {
 			// 由于下载的时候与浏览器的编码不符，浏览器不能识别中文编码，这里要进行转换
-			String value = new String(filename.getBytes("utf-8"), "ISO-8859-1");
+			String value = new String(fileName.getBytes("utf-8"), "ISO-8859-1");
 			resp.setContentType("application/x-msdownload");
 			resp.setHeader("Content-Disposition", "attachment;filename=\"" + value + "\"");
 			InputStream inputStream = new FileInputStream(file);

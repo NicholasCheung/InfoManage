@@ -37,7 +37,7 @@ public class CategoryDAOImpl extends DataBase implements CategoryDAO {
 				bool = true;
 			}
 
-			if (null != categoryDO.getUserId()) {
+			if (null != categoryDO.getUserId() && !categoryDO.getUserId().equals(0L)) {
 				if (bool) {
 					query = query.concat("and ");
 				}

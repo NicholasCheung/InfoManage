@@ -123,7 +123,7 @@
 				// 请求方式  
 				type : "post",
 				beforeSend : function(data) {
-					alert("上传中请等待...")
+				//	alert("上传中请等待...")
 				},
 				success : function(data) {
 					$("#sourceUrl").val(data)

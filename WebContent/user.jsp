@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>类别管理</title>
+<title>用户管理</title>
 
 <style>
 .table4_1 table {
@@ -48,29 +48,25 @@
 	<%@ include file="header.jsp"%>
 	<center>
 		<h2>
-			类别管理 &nbsp;&nbsp;&nbsp;
-			<c:if test="${user.userId  != 0}">
-				<button onclick="toAdd()">新增</button>
-			</c:if>
+			用户管理 &nbsp;&nbsp;&nbsp;
 			<button onclick="back()">返回</button>
 		</h2>
 
 		<table class=table4_1>
 			<tr>
 				<th width="20%">序号</th>
-				<th width="20%">类别名称</th>
-				<th width="20%">类别描述</th>
+				<th width="20%">用户名称</th>
 				<th width="20%">操作</th>
 			</tr>
-			<c:forEach var="categoryDO" items="${categoryDOs }"
-				varStatus="status">
+			<c:forEach var="userDO" items="${userDOs }" varStatus="status">
 				<tr>
 					<td width="20%">${status.index + 1}</td>
-					<td width="20%">${categoryDO.categoryName}</td>
-					<td width="20%">${categoryDO.categoryDesc}</td>
-					<td width="20%"><c:if test="${user.userId  != 0}">
-							<a onclick="edit(${categoryDO.categoryId})">编辑</a>
-						| </c:if><a onclick="del(${categoryDO.categoryId})">删除</a></td>
+					<td width="20%">${userDO.userName}</td>
+					<td width="20%"><c:if test="${userDO.status == 1 }">
+							<a onclick="update(${userDO.userId}, 0)">停用</a>
+						</c:if> <c:if test="${userDO.status == 0 }">
+							<a onclick="update(${userDO.userId}, 1)"><font color="green">恢复</font></a>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -78,29 +74,26 @@
 	</center>
 
 	<script type="text/javascript">
-		function edit(categoryId) {
-			window.location.href="category?operate=toEdit&categoryId="+categoryId
-		}
-		
 		function back() {
 			window.location.href = "${ctx}/show.jsp";
 		}
 
-		function del(categoryId) {
-			if(confirm("确定删除该类别吗？")){
+		function update(userId, status) {
+			if(confirm("确定停用该用户吗？")){
 				$.ajax({
-					url : "${ctx}/category",
+					url : "${ctx}/user",
 					type : "post",
 					data : {
 						"operate" : "del",
-						"categoryId" : categoryId
+						"userId" : userId,
+						"status" : status
 					},
 					success : function(data) {
 						if (data != null) {
-							alert("删除成功")
-							window.location.href = "${ctx}/category?operate=show";
+							alert("停用成功")
+							window.location.href = "${ctx}/user";
 						} else {
-							alert("删除失败")
+							alert("停用失败")
 						}
 					},
 					error : function() {
@@ -111,9 +104,6 @@
 
 		}
 		
-		function toAdd(){
-			window.location.href = "${ctx}/category?operate=toAdd";
-		}
 	</script>
 </body>
 </html>

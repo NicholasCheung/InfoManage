@@ -31,7 +31,7 @@ public class SourceController extends HttpServlet {
 
 		String operate = request.getParameter("operate");
 		if (StringUtils.isNotBlank(operate)) {
-			if (StringUtils.equals(operate, "show")) {
+			if (StringUtils.equals(operate, "show") || StringUtils.equals(operate, "show_clint")) {
 				showSource(request, response);
 
 			} else if (StringUtils.equals(operate, "toAdd")) {
@@ -50,6 +50,8 @@ public class SourceController extends HttpServlet {
 				delSource(request, response);
 
 			}
+		} else {
+			showSource(request, response);
 		}
 	}
 
@@ -228,8 +230,8 @@ public class SourceController extends HttpServlet {
 			String sourceTypeStr = request.getParameter("sourceType");
 			String sourceUrl = request.getParameter("sourceUrl");
 
-			if (StringUtils.isNotBlank(sourceName) || StringUtils.isNotBlank(categoryIdStr)
-					|| StringUtils.isNotBlank(sourceTypeStr) || StringUtils.isNotBlank(sourceUrl)) {
+			if (StringUtils.isBlank(sourceName) || StringUtils.isBlank(categoryIdStr)
+					|| StringUtils.isBlank(sourceTypeStr) || StringUtils.isBlank(sourceUrl)) {
 				response.getWriter().write("参数错误");
 				return;
 			}
@@ -299,20 +301,37 @@ public class SourceController extends HttpServlet {
 	 * @param response
 	 */
 	private void showSource(HttpServletRequest request, HttpServletResponse response) {
-
 		try {
+			request.setCharacterEncoding("utf-8");
+
+			String operate = request.getParameter("operate");
+
 			HttpSession session = request.getSession();
 			UserDO userDO = (UserDO) session.getAttribute("user");
 
 			String sourceName = request.getParameter("sourceName");
 			String categoryName = request.getParameter("categoryName");
 			String userName = request.getParameter("userName");
+			String sourceTypeStr = request.getParameter("sourceType");
+
+			if (StringUtils.isNotBlank(sourceName)) {
+				sourceName = new String(sourceName.getBytes("iso8859-1"), "utf-8");
+			}
+
+			if (StringUtils.isNotBlank(categoryName)) {
+				categoryName = new String(categoryName.getBytes("iso8859-1"), "utf-8");
+			}
+
+			if (StringUtils.isNotBlank(userName)) {
+				userName = new String(userName.getBytes("iso8859-1"), "utf-8");
+			}
 
 			SourceDTO sourceDTO = new SourceDTO();
 
-			if (StringUtils.isNotBlank(sourceName)) {
+			if (StringUtils.isNotBlank(sourceName) || StringUtils.isNotBlank(sourceTypeStr)) {
 				SourceDO sourceDO = new SourceDO();
 				sourceDO.setSourceName(sourceName);
+				sourceDO.setSourceType(StringUtils.isNotBlank(sourceTypeStr) ? Integer.parseInt(sourceTypeStr) : null);
 				sourceDTO.setSourceDO(sourceDO);
 			}
 
@@ -325,14 +344,22 @@ public class SourceController extends HttpServlet {
 			if (StringUtils.isNotBlank(userName) || null != userDO) {
 				UserDO userDOQuery = new UserDO();
 				userDOQuery.setUserName(userName);
-				userDOQuery.setUserId(userDO.getUserId());
+				if (StringUtils.equals(operate, "show")) {
+					userDOQuery.setUserId(userDO == null ? null : userDO.getUserId());
+				}
 				sourceDTO.setUserDO(userDOQuery);
 			}
 
 			SourceDAO sourceDAO = new SourceDAOImpl();
 			List<SourceDTO> sourceDTOs = sourceDAO.querySourceDTOs(sourceDTO);
 			request.setAttribute("sourceDTOs", sourceDTOs);
-			if (null != userDO) {
+
+			request.setAttribute("sourceName", sourceName);
+			request.setAttribute("categoryName", categoryName);
+			request.setAttribute("userName", userName);
+			request.setAttribute("sourceType", sourceTypeStr);
+
+			if (StringUtils.equals(operate, "show")) {
 				request.getRequestDispatcher("/source.jsp").forward(request, response);
 			} else {
 				request.getRequestDispatcher("/sourceClient.jsp").forward(request, response);

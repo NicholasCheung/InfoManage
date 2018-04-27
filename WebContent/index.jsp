@@ -35,6 +35,16 @@
 								<td></td>
 								<td></td>
 							</tr>
+							<tr>
+								<td>权 限：</td>
+								<td><select name="userType" id="userType"
+									style="width: 170px">
+										<option value="1">普通用户</option>
+										<option value="2">管理员</option>
+								</select></td>
+								<td></td>
+								<td></td>
+							</tr>
 						</table></td>
 				<tr>
 					<td></td>
@@ -44,6 +54,8 @@
 									onClick="validateLogin()" /></td>
 								<td><a href="${ctx }/register?operate=to"><input
 										type="button" value="注册"></a></td>
+								<td><a href="${ctx }/source"><input type="button"
+										value="去搜搜"></a></td>
 							</tr>
 						</table></td>
 			</table>

@@ -74,6 +74,7 @@ public class UploadController extends HttpServlet {
 		// 路径可以自行设置
 		String pathFile = "upload/";
 		String realPath = routePath + pathFile;
+		System.out.println("文件地址：" + realPath);
 		// String realPath = getServletContext().getRealPath("/") + "images";
 		File fileupload = new File(realPath);
 		if (!fileupload.exists()) {
@@ -93,7 +94,7 @@ public class UploadController extends HttpServlet {
 		tempFile.delete();
 
 		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().write(pathFile + filename);
+		response.getWriter().write(filename);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
