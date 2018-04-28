@@ -15,6 +15,7 @@ public class DownloadController extends HttpServlet {
 
 	private static final long serialVersionUID = -8502081766749841735L;
 
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("content-type", "text/html;charset=UTF-8");
 		String path = getServletContext().getRealPath("/");
@@ -41,6 +42,7 @@ public class DownloadController extends HttpServlet {
 		}
 	}
 
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}

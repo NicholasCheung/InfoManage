@@ -41,8 +41,8 @@
 								<td>资源类别：</td>
 								<td><select name="categoryId" id="categoryId"
 									style="width: 170px"><option value="">请选择</option>
-										<c:forEach items="${categoryDOs }" var="categoryDO">
-											<option value="${categoryDO.categoryId }">${categoryDO.categoryName }</option>
+										<c:forEach items="${categoryDTOs }" var="categoryDTO">
+											<option value="${categoryDTO.categoryDO.categoryId }">${categoryDTO.categoryDO.categoryName }</option>
 										</c:forEach>
 								</select></td>
 								<td></td>

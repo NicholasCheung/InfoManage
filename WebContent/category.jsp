@@ -49,28 +49,55 @@
 	<center>
 		<h2>
 			类别管理 &nbsp;&nbsp;&nbsp;
-			<c:if test="${user.userId  != 0}">
-				<button onclick="toAdd()">新增</button>
-			</c:if>
-			<button onclick="back()">返回</button>
 		</h2>
 
+		<form action="${ctx }/category" method="post">
+			<table class=table4_1 style="margin-bottom: 20px;">
+				<tr>
+					<td style="padding-left: 20px;">类别名称：<input name="categoryName"
+						value="${categoryName }" id="categoryName" /></td>
+					<c:if test="${user.userId  == 0}">
+						<td style="padding-left: 20px;">添加者名称：<input name="userName"
+							value="${userName }" id="userName" /></td>
+					</c:if>
+					<td style="padding-left: 20px;"><input type="submit"
+						value="搜搜" /></td>
+					<c:if test="${user.userId  != 0}">
+						<td style="padding-left: 20px;"><input type="button"
+							value="新增" onclick="toAdd()" /></td>
+					</c:if>
+					<td style="padding-left: 20px;"><input type="button"
+						value="返回" onclick="back()" /></td>
+				</tr>
+			</table>
+			<input type="hidden" value="show" name="operate">
+		</form>
 		<table class=table4_1>
 			<tr>
-				<th width="20%">序号</th>
+				<th width="10%">序号</th>
 				<th width="20%">类别名称</th>
 				<th width="20%">类别描述</th>
-				<th width="20%">操作</th>
+				<c:if test="${user.userId  == 0}">
+					<th width="20%">添加者名称</th>
+				</c:if>
+				<th width="20%">添加时间</th>
+				<th width="10%">操作</th>
 			</tr>
-			<c:forEach var="categoryDO" items="${categoryDOs }"
+			<c:forEach var="categoryDTO" items="${categoryDTOs }"
 				varStatus="status">
 				<tr>
-					<td width="20%">${status.index + 1}</td>
-					<td width="20%">${categoryDO.categoryName}</td>
-					<td width="20%">${categoryDO.categoryDesc}</td>
-					<td width="20%"><c:if test="${user.userId  != 0}">
-							<a onclick="edit(${categoryDO.categoryId})">编辑</a>
-						| </c:if><a onclick="del(${categoryDO.categoryId})">删除</a></td>
+					<td width="10%">${status.index + 1}</td>
+					<td width="20%">${categoryDTO.categoryDO.categoryName}</td>
+					<td width="20%">${categoryDTO.categoryDO.categoryDesc}</td>
+					<c:if test="${user.userId  == 0}">
+						<td width="20%">${categoryDTO.userDO.userName}</td>
+					</c:if>
+					<td width="20%"><fmt:formatDate
+							value="${categoryDTO.categoryDO.gmtCreate}"
+							pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td width="10%"><c:if test="${user.userId  != 0}">
+							<a onclick="edit(${categoryDTO.categoryDO.categoryId})">编辑</a>
+						| </c:if><a onclick="del(${categoryDTO.categoryDO.categoryId})">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

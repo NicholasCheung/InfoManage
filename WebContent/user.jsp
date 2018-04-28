@@ -49,20 +49,36 @@
 	<center>
 		<h2>
 			用户管理 &nbsp;&nbsp;&nbsp;
-			<button onclick="back()">返回</button>
 		</h2>
-
+		<form action="${ctx }/user" method="post">
+			<table class=table4_1 style="margin-bottom: 20px;">
+				<tr>
+					<td style="padding-left: 20px;">用户名称：<input name="userName"
+						value="${userName }" id="userName" /></td>
+					<td style="padding-left: 20px;"><input type="submit"
+						value="搜搜" /></td>
+					<td style="padding-left: 20px;"><input type="button"
+						value="返回" onclick="back()" /></td>
+				</tr>
+			</table>
+		</form>
 		<table class=table4_1>
 			<tr>
-				<th width="20%">序号</th>
+				<th width="10%">序号</th>
 				<th width="20%">用户名称</th>
-				<th width="20%">操作</th>
+				<th width="20%">注册时间</th>
+				<th width="20%">修改时间</th>
+				<th width="10%">操作</th>
 			</tr>
 			<c:forEach var="userDO" items="${userDOs }" varStatus="status">
 				<tr>
-					<td width="20%">${status.index + 1}</td>
+					<td width="10%">${status.index + 1}</td>
 					<td width="20%">${userDO.userName}</td>
-					<td width="20%"><c:if test="${userDO.status == 1 }">
+					<td width="20%"><fmt:formatDate value="${userDO.gmtCreate}"
+							pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td width="20%"><fmt:formatDate value="${userDO.gmtModify}"
+							pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td width="10%"><c:if test="${userDO.status == 1 }">
 							<a onclick="update(${userDO.userId}, 0)">停用</a>
 						</c:if> <c:if test="${userDO.status == 0 }">
 							<a onclick="update(${userDO.userId}, 1)"><font color="green">恢复</font></a>

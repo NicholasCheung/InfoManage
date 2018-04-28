@@ -19,6 +19,7 @@ public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = -2774545038842957201L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
@@ -39,7 +40,7 @@ public class LoginController extends HttpServlet {
 			userDO.setUserName(userName);
 			userDO.setUserPasswd(password);
 			userDO.setStatus(1);
-			List<UserDO> userDOs = userDAO.queryUserDOs(userDO);
+			List<UserDO> userDOs = userDAO.queryUserDOs(userDO, false);
 
 			if (userDOs.isEmpty() || userDOs.size() > 1) {
 				response.getWriter().write("账号密码错误");
@@ -62,6 +63,7 @@ public class LoginController extends HttpServlet {
 		}
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

@@ -104,7 +104,7 @@ public class DataBase {
 		getConnection();
 		try {
 			// 3、创建命令执行对象
-			pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			pstmt = conn.prepareStatement(query, java.sql.Statement.RETURN_GENERATED_KEYS);
 			// 4、执行
 			if (params != null && params.size() > 0) {
 				for (int i = 0; i < params.size(); i++) {

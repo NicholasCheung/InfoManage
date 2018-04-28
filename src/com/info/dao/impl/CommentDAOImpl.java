@@ -25,6 +25,8 @@ public class CommentDAOImpl extends DataBase implements CommentDAO {
 			query = query + " and tc.status= ? ";
 			params.add(commentDO.getStatus());
 		}
+		
+		query = query + " order by tc.gmt_create desc";
 
 		try {
 			ResultSet rs = this.executeQuery(query, params);
@@ -73,8 +75,8 @@ public class CommentDAOImpl extends DataBase implements CommentDAO {
 				commentDB.setContent(rs.getString("content"));
 				commentDB.setSourceId(rs.getLong("source_id"));
 				commentDB.setUserId(rs.getLong("user_id"));
-				commentDB.setGmtCreate(rs.getDate("gmt_create"));
-				commentDB.setGmtModify(rs.getDate("gmt_modify"));
+				commentDB.setGmtCreate(rs.getTimestamp("gmt_create"));
+				commentDB.setGmtModify(rs.getTimestamp("gmt_modify"));
 				commentDB.setStatus(rs.getInt("status"));
 
 			}

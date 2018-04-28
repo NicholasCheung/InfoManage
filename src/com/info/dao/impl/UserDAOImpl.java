@@ -14,7 +14,7 @@ import com.info.entity.UserDO;
 public class UserDAOImpl extends DataBase implements UserDAO {
 
 	@Override
-	public List<UserDO> queryUserDOs(UserDO userDO) {
+	public List<UserDO> queryUserDOs(UserDO userDO, Boolean isLike) {
 		List<UserDO> result = new ArrayList<UserDO>();
 		List<Object> params = new ArrayList<Object>();
 
@@ -23,8 +23,14 @@ public class UserDAOImpl extends DataBase implements UserDAO {
 			query = query.concat("where ");
 			boolean bool = false;
 			if (StringUtils.isNotBlank(userDO.getUserName())) {
-				query = query.concat("user_name = ? ");
-				params.add(userDO.getUserName());
+				if (isLike) {
+					query = query.concat("user_name like ?");
+					params.add("%" + userDO.getUserName() + "%");
+				} else {
+					query = query.concat("user_name = ? ");
+					params.add(userDO.getUserName());
+				}
+
 				bool = true;
 			}
 
@@ -45,6 +51,7 @@ public class UserDAOImpl extends DataBase implements UserDAO {
 			}
 		}
 
+		query = query + " order by gmt_create desc";
 		try {
 			ResultSet rs = this.executeQuery(query, params);
 			while (rs.next()) {
@@ -52,8 +59,8 @@ public class UserDAOImpl extends DataBase implements UserDAO {
 				userDODB.setUserId(rs.getLong("user_id"));
 				userDODB.setUserName(rs.getString("user_name"));
 				userDODB.setUserPasswd(rs.getString("user_passwd"));
-				userDODB.setGmtCreate(rs.getDate("gmt_create"));
-				userDODB.setGmtModify(rs.getDate("gmt_modify"));
+				userDODB.setGmtCreate(rs.getTimestamp("gmt_create"));
+				userDODB.setGmtModify(rs.getTimestamp("gmt_modify"));
 				userDODB.setStatus(rs.getInt("status"));
 
 				result.add(userDODB);
@@ -81,8 +88,8 @@ public class UserDAOImpl extends DataBase implements UserDAO {
 				userDODB.setUserId(rs.getLong("user_id"));
 				userDODB.setUserName(rs.getString("user_name"));
 				userDODB.setUserPasswd(rs.getString("user_passwd"));
-				userDODB.setGmtCreate(rs.getDate("gmt_create"));
-				userDODB.setGmtModify(rs.getDate("gmt_modify"));
+				userDODB.setGmtCreate(rs.getTimestamp("gmt_create"));
+				userDODB.setGmtModify(rs.getTimestamp("gmt_modify"));
 				userDODB.setStatus(rs.getInt("status"));
 			}
 		} catch (Exception e) {

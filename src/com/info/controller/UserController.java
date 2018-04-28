@@ -19,6 +19,7 @@ public class UserController extends HttpServlet {
 
 	private static final long serialVersionUID = -5617650356894962958L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -43,6 +44,7 @@ public class UserController extends HttpServlet {
 		}
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
@@ -89,8 +91,9 @@ public class UserController extends HttpServlet {
 			}
 
 			UserDAO userDAO = new UserDAOImpl();
-			List<UserDO> userDOs = userDAO.queryUserDOs(userDO);
+			List<UserDO> userDOs = userDAO.queryUserDOs(userDO, true);
 
+			request.setAttribute("userName", userName);
 			request.setAttribute("userDOs", userDOs);
 			request.getRequestDispatcher("/user.jsp").forward(request, response);
 

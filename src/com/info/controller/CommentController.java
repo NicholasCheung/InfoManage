@@ -26,6 +26,7 @@ public class CommentController extends HttpServlet {
 
 	private static final long serialVersionUID = -5859073832124972675L;
 
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operate = request.getParameter("operate");
 		if (StringUtils.isNotBlank(operate)) {
@@ -41,6 +42,7 @@ public class CommentController extends HttpServlet {
 		}
 	}
 
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}

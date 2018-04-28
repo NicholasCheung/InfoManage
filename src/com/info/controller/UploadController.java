@@ -15,6 +15,7 @@ public class UploadController extends HttpServlet {
 
 	private static final long serialVersionUID = 1663398903824699526L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 从request当中获取流信息
@@ -97,6 +98,7 @@ public class UploadController extends HttpServlet {
 		response.getWriter().write(filename);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

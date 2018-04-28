@@ -14,6 +14,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.info.dao.CategoryDAO;
 import com.info.dao.impl.CategoryDAOImpl;
+import com.info.dto.CategoryDTO;
 import com.info.entity.CategoryDO;
 import com.info.entity.UserDO;
 
@@ -21,6 +22,7 @@ public class CategoryController extends HttpServlet {
 
 	private static final long serialVersionUID = -3865177419766201827L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
@@ -49,6 +51,7 @@ public class CategoryController extends HttpServlet {
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
@@ -87,9 +90,12 @@ public class CategoryController extends HttpServlet {
 			categoryDO.setUserId(userId);
 			categoryDO.setStatus(1);
 
+			CategoryDTO categoryDTO = new CategoryDTO();
+			categoryDTO.setCategoryDO(categoryDO);
+
 			int result = 0;
-			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDO, false);
-			if (null == categoryDOs || categoryDOs.isEmpty()) {
+			List<CategoryDTO> categoryDTOs = categoryDAO.queryCategorys(categoryDTO, false);
+			if (null == categoryDTOs || categoryDTOs.isEmpty()) {
 				categoryDO.setUserId(userId);
 				categoryDO.setCategoryDesc(categoryDesc);
 				categoryDO.setStatus(1);
@@ -125,14 +131,36 @@ public class CategoryController extends HttpServlet {
 				return;
 			}
 
+			String categoryName = request.getParameter("categoryName");
+			String userName = request.getParameter("userName");
+
 			Long userId = userDO.getUserId();
 
 			CategoryDAO categoryDAO = new CategoryDAOImpl();
 			CategoryDO categoryDOQuery = new CategoryDO();
 			categoryDOQuery.setStatus(1);
 			categoryDOQuery.setUserId(userId);
-			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDOQuery, true);
-			request.setAttribute("categoryDOs", categoryDOs);
+			if (StringUtils.isNotBlank(categoryName)) {
+				categoryName = new String(categoryName.getBytes("iso8859-1"), "utf-8");
+				categoryDOQuery.setCategoryName(categoryName);
+			}
+			UserDO userDOQuery = new UserDO();
+
+			if (StringUtils.isNotBlank(userName)) {
+				userName = new String(userName.getBytes("iso8859-1"), "utf-8");
+				userDOQuery.setUserName(userName);
+			}
+
+			CategoryDTO categoryDTO = new CategoryDTO();
+			categoryDTO.setCategoryDO(categoryDOQuery);
+			categoryDTO.setUserDO(userDOQuery);
+
+			List<CategoryDTO> categoryDTOs = categoryDAO.queryCategorys(categoryDTO, true);
+			request.setAttribute("categoryDTOs", categoryDTOs);
+
+			request.setAttribute("categoryName", categoryName);
+			request.setAttribute("userName", userName);
+
 			request.getRequestDispatcher("/category.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + "-" + e);

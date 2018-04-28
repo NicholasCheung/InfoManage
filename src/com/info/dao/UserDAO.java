@@ -6,7 +6,7 @@ import com.info.entity.UserDO;
 
 public interface UserDAO {
 
-	List<UserDO> queryUserDOs(UserDO userDO);
+	List<UserDO> queryUserDOs(UserDO userDO, Boolean isLike);
 
 	UserDO queryByUserId(Long userId);
 

@@ -16,6 +16,7 @@ import com.info.dao.CategoryDAO;
 import com.info.dao.SourceDAO;
 import com.info.dao.impl.CategoryDAOImpl;
 import com.info.dao.impl.SourceDAOImpl;
+import com.info.dto.CategoryDTO;
 import com.info.dto.SourceDTO;
 import com.info.entity.CategoryDO;
 import com.info.entity.SourceDO;
@@ -25,6 +26,7 @@ public class SourceController extends HttpServlet {
 
 	private static final long serialVersionUID = 767141281086231494L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
@@ -55,6 +57,7 @@ public class SourceController extends HttpServlet {
 		}
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
@@ -285,8 +288,12 @@ public class SourceController extends HttpServlet {
 			CategoryDO categoryDO = new CategoryDO();
 			categoryDO.setUserId(userId);
 			categoryDO.setStatus(1);
-			List<CategoryDO> categoryDOs = categoryDAO.queryCategorys(categoryDO, true);
-			request.setAttribute("categoryDOs", categoryDOs);
+			
+			CategoryDTO categoryDTO = new CategoryDTO();
+			categoryDTO.setCategoryDO(categoryDO);
+			
+			List<CategoryDTO> categoryDTOs = categoryDAO.queryCategorys(categoryDTO, true);
+			request.setAttribute("categoryDTOs", categoryDTOs);
 			request.getRequestDispatcher("/addSource.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + "-" + e);

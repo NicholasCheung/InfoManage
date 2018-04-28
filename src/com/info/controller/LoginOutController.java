@@ -14,6 +14,7 @@ public class LoginOutController extends HttpServlet {
 
 	private static final long serialVersionUID = -70642360782885143L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -25,6 +26,7 @@ public class LoginOutController extends HttpServlet {
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
